@@ -1,0 +1,185 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.app {
+
+    margin-top: 7.5rem;
+
+    @include m.telefono { 
+        margin-bottom: 4rem;
+    }
+
+    img {
+        margin: 0 auto;
+    }
+
+    .calculadora-grid {
+        max-width: 45rem;
+        margin-top: 4rem;
+        margin-inline: auto;
+        background-color: v.$white;
+        border-radius: 2rem 2rem 0 0;
+        padding: 3rem;
+        @include m.grid(1, 3.5rem);
+
+        @include m.telefono { 
+            border-radius: 2rem;
+        }
+
+        @include m.tablet-xl { 
+            @include m.grid(2, 3.5rem);
+            max-width: 100%;
+            margin-top: 6rem;
+            padding: 5rem;
+        }
+
+        .calculadora {
+            display: flex;
+            flex-direction: column;
+            gap: 3.5rem;
+
+            .cuenta,
+            .propina-btns,
+            .numero-personas {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+    
+                label {
+                    color: v.$grayishCyan;
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
+
+            .input-cuenta,
+            .input-personas {
+                background-image: url(../img/icon-dollar.svg);
+                background-repeat: no-repeat;
+                background-position: 2rem center;
+
+
+                &.error {
+                    border: .2rem solid red;
+                }
+            }
+
+            .input-personas {
+                background-image: url(../img/icon-person.svg);
+            }
+
+            .input-custom {
+                height: 5rem;
+                width: 100%;
+                
+                &::placeholder {
+                    color: v.$darkGrayishCyan;
+                    font-size: 2rem;
+                    text-align: left
+                }
+                
+                &.error {
+                    border: .2rem solid red;
+                }
+            }
+    
+            .grid {
+                @include m.grid(2, 2rem);   
+
+                @include m.tablet-xl { 
+                    @include m.grid(3, 2rem);   
+                }
+
+                button {
+                    @include m.boton();
+
+                    &.activo {
+                        background-color: v.$strongCyan;
+                        color: v.$veryDarkCyan;
+                    }
+                }
+            }
+
+            .errorMensaje {
+                color: red;
+            }
+        }
+
+        .resultado {
+            background-color: v.$veryDarkCyan;
+            border-radius: 2rem;
+            padding: 3rem 2rem;
+
+            @include m.tablet-xl { 
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                padding: 4rem 3rem;
+            }
+
+            .propina-persona,
+            .total-persona {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                div {
+                    display: flex;
+                    align-items: center;
+                    gap: .4rem;
+                }
+
+                p {
+                    color: v.$white;
+
+                    span {
+                        display: block;
+                        font-size: 1.5rem;
+                        color: v.$grayishCyan;
+                    }
+                }
+
+                .cantidad {
+                    color: v.$strongCyan;
+                    font-size: 2.8rem;
+                    display: flex;
+                    align-items: center;
+                    gap: .2rem;
+
+                    @include m.tablet-xl { 
+                        font-size: 4.2rem;
+                    }
+                }
+            }
+
+            .propina-persona {
+                margin-bottom: 3rem;
+            }
+
+            .btn-reset {
+                margin-top: 3rem;
+                width: 100%;
+                height: 5rem;
+                text-align: center;
+                color: v.$veryDarkCyan;
+                background-color: v.$strongCyan;
+                border-radius: .5rem;
+                font-size: 2rem;
+                transition: all .3s;
+
+                &:hover {
+                    background-color: v.$veryLightGrayishCyan;
+                }
+
+                &:focus {
+                    outline: .3rem dashed v.$white;
+                }
+
+                &.deshabilitado {
+                    opacity: .4;
+                }
+            }
+        }
+
+    }
+}
